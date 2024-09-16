@@ -8,3 +8,5 @@ pybluemonday/*.so
 bluemonday.o
 bluemonday.so
 .eggs
+
+venv/

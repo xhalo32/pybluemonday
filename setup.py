@@ -56,6 +56,10 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/ColdHeat/pybluemonday",
     packages=setuptools.find_packages(),
+    include_package_data=True,
+    package_data={
+        'pybluemonday': ['bluemonday.so', 'bluemonday.h'],
+    },
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
