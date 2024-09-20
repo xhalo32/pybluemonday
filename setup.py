@@ -41,7 +41,7 @@ setuptools.setup(
     include_package_data=True,
     package_dir={'pybluemonday':'.'},
     package_data={
-        'pybluemonday': ['bluemonday.cpython-312-x86_64-linux-gnu.so'], # FIXME how to set this from nix
+        'pybluemonday': ['bluemonday.cpython-311-x86_64-linux-gnu.so'],
     },
     classifiers=[
         "Programming Language :: Python :: 3",

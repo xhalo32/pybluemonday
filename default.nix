@@ -30,11 +30,19 @@ python3.pkgs.buildPythonPackage {
     autoPatchelfHook
   ];
 
-  postPatch = ''
-    ln -s ${bluemonday}/include/bluemonday.h bluemonday.h
-    substituteInPlace build_ffi.py \
-      --replace-fail 'bluemonday.so' '${bluemonday}/lib/bluemonday.so'
-  '';
+  postPatch =
+    let
+      versionTuple = (lib.strings.splitString "." python3.version);
+      versionString = "${builtins.elemAt versionTuple 0}${builtins.elemAt versionTuple 1}";
+    in
+    ''
+      ln -s ${bluemonday}/include/bluemonday.h bluemonday.h
+      substituteInPlace build_ffi.py \
+        --replace-fail 'bluemonday.so' '${bluemonday}/lib/bluemonday.so'
+
+      substituteInPlace setup.py \
+        --replace-fail 'bluemonday.cpython-311-x86_64-linux-gnu.so' 'bluemonday.cpython-${versionString}-x86_64-linux-gnu.so'
+    '';
 
   postBuild = ''
     ls -hartl
