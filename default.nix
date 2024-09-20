@@ -44,11 +44,6 @@ python3.pkgs.buildPythonPackage {
         --replace-fail 'bluemonday.cpython-311-x86_64-linux-gnu.so' 'bluemonday.cpython-${versionString}-x86_64-linux-gnu.so'
     '';
 
-  postBuild = ''
-    ls -hartl
-    ldd bluemonday.cpython-312-x86_64-linux-gnu.so
-  '';
-
   build-system = [ python3.pkgs.setuptools ];
 
   pythonImportsCheck = [ "pybluemonday.bluemonday" ];
