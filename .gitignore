@@ -10,3 +10,4 @@ bluemonday.so
 .eggs
 
 venv/
+result*

@@ -39,3 +39,4 @@ extern void FreeCString(char* p0);
 
 if __name__ == "__main__":
     ffibuilder.compile(verbose=True)
+    print("build_ffi finished")
