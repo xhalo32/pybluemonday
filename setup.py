@@ -21,7 +21,9 @@ print("Build the CFFI headers")
 # subprocess.call(["pip", "install", "cffi~=1.1"], env=env)
 subprocess.call(["make", "ffi"], env=env)
 
-with open("pybluemonday/__init__.py", "r", encoding="utf8") as f:
+# subprocess.call(["mv", "bluemonday.cpython-311-x86_64-linux-gnu.so", "pybluemonday"], env=env)
+
+with open("__init__.py", "r", encoding="utf8") as f:
     version = re.search(r'__version__ = "(.*?)"', f.read()).group(1)
 
 with open("README.md", "r", encoding="utf8") as fh:
@@ -36,8 +38,8 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/ColdHeat/pybluemonday",
-    packages=setuptools.find_packages(),
-    # packages=['pybluemonday', 'pybluemonday/bluemonday'],
+    # packages=setuptools.find_packages(),
+    packages=['pybluemonday'],
     include_package_data=True,
     package_dir={'pybluemonday':'.'},
     package_data={
