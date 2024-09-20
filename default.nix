@@ -1,15 +1,21 @@
 {
   lib,
-  python3,
+  python,
   bluemonday,
   autoPatchelfHook,
+  buildPythonPackage,
+
+  # Python packages
+  cffi,
+  setuptools,
+  wheel,
   ...
 }:
 let
-  versionTuple = (lib.strings.splitString "." python3.version);
+  versionTuple = (lib.strings.splitString "." python.version);
   versionString = "${builtins.elemAt versionTuple 0}${builtins.elemAt versionTuple 1}";
 in
-python3.pkgs.buildPythonPackage {
+buildPythonPackage {
   name = "pybluemonday";
   src = lib.cleanSourceWith {
     src = lib.cleanSource ./.;
@@ -22,7 +28,7 @@ python3.pkgs.buildPythonPackage {
       ]);
   };
 
-  buildInputs = with python3.pkgs; [
+  buildInputs = [
     cffi
     setuptools
     wheel
@@ -48,7 +54,7 @@ python3.pkgs.buildPythonPackage {
   #   ldd build/lib/pybluemonday/bluemonday.cpython-${versionString}-x86_64-linux-gnu.so
   # '';
 
-  build-system = [ python3.pkgs.setuptools ];
+  build-system = [ setuptools ];
 
   doCheck = false;
 

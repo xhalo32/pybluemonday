@@ -21,11 +21,11 @@
           pkgs = nixpkgs.legacyPackages.${system};
 
           inherit (pkgs) lib;
-          python = pkgs.python3;
+          python3 = pkgs.python311;
         in
         rec {
           bluemonday = pkgs.callPackage ./bluemonday.nix { };
-          pybluemonday = pkgs.callPackage ./. { inherit bluemonday; };
+          pybluemonday = python3.pkgs.callPackage ./. { inherit bluemonday; };
 
           default = pybluemonday;
         }
